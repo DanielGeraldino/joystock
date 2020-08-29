@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "47956546906",
+    "firebase_url": "https://pi-joystock.firebaseio.com",
+    "project_id": "pi-joystock",
+    "storage_bucket": "pi-joystock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47956546906:android:06bef36ff5d7ae19d98f63",
+        "android_client_info": {
+          "package_name": "dospropleys.android.joystock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47956546906-s07fjht301b9r496mma9is1idrvu5jvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV_0jVrc--NoJUD3wCRIWox9njaKCk6qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47956546906-s07fjht301b9r496mma9is1idrvu5jvd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
