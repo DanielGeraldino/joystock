@@ -5,45 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".MainActivity">
+    tools:context=".Activity.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/editLogin"
+        app:layout_constraintEnd_toEndOf="@+id/editLogin"
+        app:layout_constraintStart_toStartOf="@+id/editLogin"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.491"
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Digite seu e-mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/btnEntraSistema"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="entrar"
-        app:layout_constraintEnd_toEndOf="@+id/textRecuperaSenha"
-        app:layout_constraintStart_toStartOf="@+id/textRecuperaSenha"
-        app:layout_constraintTop_toBottomOf="@+id/textRecuperaSenha" />
-
-    <EditText
         android:id="@+id/editSenha"
-        android:layout_width="379dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -53,26 +35,56 @@
         app:layout_constraintStart_toStartOf="@+id/editLogin"
         app:layout_constraintTop_toBottomOf="@+id/editLogin" />
 
-    <TextView
-        android:id="@+id/textCriarConta"
+    <EditText
+        android:id="@+id/editLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Digite seu e-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnEntraSistema"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Criar conta"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnEntraSistema"
-        app:layout_constraintStart_toStartOf="@+id/btnEntraSistema"
-        app:layout_constraintTop_toBottomOf="@+id/btnEntraSistema"
-        app:layout_constraintVertical_bias="0.13" />
+        android:layout_marginTop="32dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="entrar"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="@+id/textCriarConta"
+        app:layout_constraintStart_toStartOf="@+id/textCriarConta"
+        app:layout_constraintTop_toBottomOf="@+id/textCriarConta" />
 
     <TextView
         android:id="@+id/textRecuperaSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
         android:text="Esqueceu a sua senha?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnEntraSistema"
+        app:layout_constraintStart_toStartOf="@+id/btnEntraSistema"
+        app:layout_constraintTop_toBottomOf="@+id/btnEntraSistema"
+        app:layout_constraintVertical_bias="0.26999998" />
+
+    <TextView
+        android:id="@+id/textCriarConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Criar conta"
         app:layout_constraintEnd_toEndOf="@+id/editSenha"
         app:layout_constraintStart_toStartOf="@+id/editSenha"
         app:layout_constraintTop_toBottomOf="@+id/editSenha" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
