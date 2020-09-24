@@ -22,4 +22,9 @@
         android:name="dospropleys.android.joystock.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_entrada_produto"
+        android:name="dospropleys.android.joystock.ui.entradaProduto.EntradaProdutoFragment"
+        android:label="@string/menu_entrada_produto"
+        tools:layout="@layout/entrada_produto_fragment" />
 </navigation>

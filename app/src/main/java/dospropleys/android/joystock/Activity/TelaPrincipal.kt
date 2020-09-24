@@ -3,6 +3,7 @@ package dospropleys.android.joystock.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import dospropleys.android.joystock.FirebaseHelper.Autenticacao
 import dospropleys.android.joystock.R
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 class TelaPrincipal : AppCompatActivity() {
 
@@ -67,6 +69,9 @@ class TelaPrincipal : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
+
+        textNomeUsuario.text = Autenticacao.getUsuario()?.email ?: "usuario não identificado"
+
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
