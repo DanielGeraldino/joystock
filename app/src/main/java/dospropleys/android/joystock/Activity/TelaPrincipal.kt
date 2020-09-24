@@ -43,7 +43,8 @@ class TelaPrincipal : AppCompatActivity() {
             setOf(
                 R.id.nav_home,
                 R.id.nav_gallery,
-                R.id.nav_slideshow
+                R.id.nav_slideshow,
+                R.id.nav_entrada_produto
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

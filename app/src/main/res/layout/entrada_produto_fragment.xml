@@ -29,17 +29,21 @@
         android:id="@+id/editDataEmiEntrada"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:helperTextEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.santalu.maskara.widget.MaskEditText
+            android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Data emissão"
-            android:shadowColor="@color/colorPrimary"
-            android:singleLine="true" />
+            android:hint="Digite a data de emissão"
+            android:inputType="number"
+            app:mask="__/__/____"
+            app:maskCharacter="_"
+            app:maskStyle="completable" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

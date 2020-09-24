@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dospropleys.android.joystock.R
+import kotlinx.android.synthetic.main.app_bar_main.view.*
 
 class EntradaProdutoFragment : Fragment() {
 
@@ -17,16 +18,19 @@ class EntradaProdutoFragment : Fragment() {
     private lateinit var viewModel: EntradaProdutoViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.entrada_produto_fragment, container, false)
+        val root = inflater.inflate(R.layout.entrada_produto_fragment, container, false)
+
+        return root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(EntradaProdutoViewModel::class.java)
         // TODO: Use the ViewModel
-    }
+    }*/
 
 }
