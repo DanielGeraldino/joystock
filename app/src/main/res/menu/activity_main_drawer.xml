@@ -5,21 +5,28 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_consultar_produto"
+            android:icon="@drawable/ic_pesquisar_produto"
+            android:title="@string/menu_consulta_produto"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-
+            android:id="@+id/nav_consultar_fornec"
+            android:icon="@drawable/ic_consultar_fornecedor"
+            android:title="@string/menu_cosnulta_fornec"/>
         <item
             android:id="@+id/nav_entrada_produto"
-            android:icon="@drawable/ic_menu_add_box"
-            android:title="Entrada produto" />
+            android:icon="@drawable/ic_006_box"
+            android:title="@string/menu_entrada_produto" />
+        <item
+            android:id="@+id/nav_saida_produto"
+            android:icon="@drawable/ic_saida_produto"
+            android:title="@string/menu_saida_produto" />
+        <item
+            android:id="@+id/nav_cadastrar_produto"
+            android:icon="@drawable/ic_add_produto"
+            android:title="@string/menu_cadastrar_produto"/>
+        <item
+            android:id="@+id/nav_cadastrar_fornecedor"
+            android:icon="@drawable/ic_005_truck"
+            android:title="@string/menu_cadastrar_fornec"/>
     </group>
 </menu>

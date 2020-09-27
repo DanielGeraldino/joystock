@@ -41,10 +41,12 @@ class TelaPrincipal : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home,
-                R.id.nav_gallery,
-                R.id.nav_slideshow,
-                R.id.nav_entrada_produto
+                R.id.nav_consultar_produto,
+                R.id.nav_consultar_fornec,
+                R.id.nav_entrada_produto,
+                R.id.nav_saida_produto,
+                R.id.nav_cadastrar_produto,
+                R.id.nav_cadastrar_fornecedor
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

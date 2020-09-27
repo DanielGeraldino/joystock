@@ -13,4 +13,10 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_entrada_produto">Entrada produto</string>
+    <string name="menu_saida_produto">Saída produto</string>
+    <string name="menu_consulta_produto">Consultar produto</string>
+    <string name="menu_cosnulta_fornec">Consultar fornecedor</string>
+    <string name="menu_cadastrar_produto">Cadastrar produto</string>
+    <string name="menu_cadastrar_fornec">Cadastrar fornecedor</string>
+
 </resources>
