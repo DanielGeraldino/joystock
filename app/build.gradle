@@ -57,6 +57,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:18.0.0'
     //Mascara para data
     implementation 'com.github.santalu:maskara:1.0.0'
+    // Biblioteca para circleimageview
+    implementation 'de.hdodenhof:circleimageview:2.0.0'
 
 
 

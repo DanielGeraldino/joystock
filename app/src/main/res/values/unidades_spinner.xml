@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lista_unidades">
+        <item>UN - Unidade</item>
+        <item>KG - quilograma</item>
+        <item>G - grama</item>
+        <item>MG - miligrama</item>
+        <item>L - Litro</item>
+        <item>ML - Mililitro</item>
+    </string-array>
+</resources>
