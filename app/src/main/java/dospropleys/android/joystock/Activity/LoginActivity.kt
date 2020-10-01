@@ -26,14 +26,20 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun btnEntrar() {
+
         var login: String = editLogin.text.toString()
         var senha: String = editSenha.text.toString()
 
-        Autenticacao.login(login, senha, this)
-
-        if(Autenticacao.getUsuario() != null) {
-            abrirTelaPrincipal()
+        if(login != "") {
+            if(senha != "") {
+                Autenticacao.login(login, senha, this)
+            } else {
+                Toast.makeText(this, "Favor informa a senha!", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Toast.makeText(this, "Favor informa o login!", Toast.LENGTH_LONG).show()
         }
+
     }
 
     fun abrirTelaPrincipal() {
