@@ -37,7 +37,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite o nome do produto" />
+            android:hint="Digite o nome do produto"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
@@ -72,7 +73,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite o codigo de barra" />
+            android:hint="Digite o codigo de barra"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -88,7 +90,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite o valor para venda" />
+            android:hint="Digite o valor para venda"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

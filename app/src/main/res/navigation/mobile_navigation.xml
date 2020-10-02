@@ -13,26 +13,26 @@
     <fragment
         android:id="@+id/nav_consultar_produto"
         android:name="dospropleys.android.joystock.ui.consultaProduto.ConsultarProdutoFragment"
-        android:label="consultar_produto_fragment"
+        android:label="@string/menu_consulta_produto"
         tools:layout="@layout/consultar_produto_fragment" />
     <fragment
         android:id="@+id/nav_consultar_fornec"
         android:name="dospropleys.android.joystock.ui.consultaFornecedor.ConsultarFornecedorFragment"
-        android:label="consultar_fornecedor_fragment"
+        android:label="@string/menu_cosnulta_fornec"
         tools:layout="@layout/consultar_fornecedor_fragment" />
     <fragment
         android:id="@+id/nav_saida_produto"
         android:name="dospropleys.android.joystock.ui.saidaProduto.SaidaProdutoFragment"
-        android:label="saida_produto_fragment"
+        android:label="@string/menu_saida_produto"
         tools:layout="@layout/saida_produto_fragment" />
     <fragment
         android:id="@+id/nav_cadastrar_produto"
         android:name="dospropleys.android.joystock.ui.cadastrarProduto.CadastrarProdutoFragment"
-        android:label="cadastrar_produto_fragment"
+        android:label="@string/menu_cadastrar_produto"
         tools:layout="@layout/cadastrar_produto_fragment" />
     <fragment
         android:id="@+id/nav_cadastrar_fornecedor"
         android:name="dospropleys.android.joystock.ui.cadastrarFornecedor.CadastrarFornecedorFragment"
-        android:label="cadastrar_fornecedor_fragment"
+        android:label="@string/menu_cadastrar_fornec"
         tools:layout="@layout/cadastrar_fornecedor_fragment" />
 </navigation>
