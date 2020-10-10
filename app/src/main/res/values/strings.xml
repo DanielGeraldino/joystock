@@ -18,5 +18,6 @@
     <string name="menu_cosnulta_fornec">Consultar fornecedor</string>
     <string name="menu_cadastrar_produto">Cadastrar produto</string>
     <string name="menu_cadastrar_fornec">Cadastrar fornecedor</string>
+    <string name="search_hint">Digite o nome do item</string>
 
 </resources>
