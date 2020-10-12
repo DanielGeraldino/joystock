@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.google.android.gms.common.internal.Objects
 import dospropleys.android.joystock.R
 import kotlinx.android.synthetic.main.cadastrar_produto_fragment.view.*
+import kotlinx.coroutines.newFixedThreadPoolContext
 
 class CadastrarProdutoFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -35,8 +36,15 @@ class CadastrarProdutoFragment : Fragment(), AdapterView.OnItemSelectedListener 
             .also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 root.spinnerUnidades.adapter = adapter }
-
         root.spinnerUnidades.onItemSelectedListener = this
+
+        ArrayAdapter.createFromResource(
+            root.context,
+            R.array.lista_tipos,
+            android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            root.spinnerTipos.adapter = adapter }
+        root.spinnerTipos.onItemSelectedListener = this
 
         return root
     }
@@ -52,9 +60,11 @@ class CadastrarProdutoFragment : Fragment(), AdapterView.OnItemSelectedListener 
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val teste = parent?.getItemAtPosition(position).toString()
-        Toast.makeText(activity, teste, Toast.LENGTH_LONG).show()
-        Log.d("spinner", teste)
+        val item = parent?.getItemAtPosition(position).toString()
+        Toast.makeText(activity, item, Toast.LENGTH_LONG).show()
+        Log.d("spinner item", item)
+        Log.d("spinner pos", position.toString())
+        Log.d("spinner id", id.toString())
     }
 
 }
