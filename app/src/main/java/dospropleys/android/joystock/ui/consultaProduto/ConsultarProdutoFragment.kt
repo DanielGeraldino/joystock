@@ -1,9 +1,5 @@
 package dospropleys.android.joystock.ui.consultaProduto
 
-import android.app.SearchManager
-import android.content.Context
-import android.content.Context.SEARCH_SERVICE
-import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,11 +9,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import dospropleys.android.joystock.R
-import kotlinx.android.synthetic.main.consultar_produto_fragment.*
 import kotlinx.android.synthetic.main.consultar_produto_fragment.view.*
-import java.util.*
 
 class ConsultarProdutoFragment : Fragment() {
 
@@ -39,17 +32,23 @@ class ConsultarProdutoFragment : Fragment() {
 
         root.listagemConsultaItem.adapter = adapterItens
 
+        root.listagemConsultaItem.setOnItemClickListener { parent, view, position, id ->
+            Toast.makeText(root.context,
+                "Item selecionado: " +
+                adapterItens.getItem(position),
+                Toast.LENGTH_SHORT).show()
+        }
+
         root.consultaProduto.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    TODO("Not yet implemented")
+                    Toast.makeText(root.context, query, Toast.LENGTH_LONG).show()
+                    return false;
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-
                     adapterItens.filter.filter(newText)
                     return false
-
                 }
 
             }

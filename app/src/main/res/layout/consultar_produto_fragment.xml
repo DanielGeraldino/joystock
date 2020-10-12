@@ -10,18 +10,24 @@
         android:id="@+id/consultaProduto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:queryHint="Digite o nome do produto"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintBottom_toTopOf="@+id/listagemConsultaItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <ListView
         android:id="@+id/listagemConsultaItem"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/consultaProduto" />
 </androidx.constraintlayout.widget.ConstraintLayout>
