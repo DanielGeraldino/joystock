@@ -55,6 +55,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
     // Api Authentication
     implementation 'com.google.firebase:firebase-auth:18.0.0'
+    // Api RealTime DataBase
+    implementation 'com.google.firebase:firebase-database-ktx:19.4.0'
+
     //Mascara para data
     implementation 'com.github.santalu:maskara:1.0.0'
     // Biblioteca para circleimageview

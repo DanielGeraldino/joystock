@@ -10,18 +10,21 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.google.android.gms.common.internal.Objects
+import dospropleys.android.joystock.FirebaseHelper.DataBase
+import dospropleys.android.joystock.Model.Produto
 import dospropleys.android.joystock.R
 import kotlinx.android.synthetic.main.cadastrar_produto_fragment.view.*
-import kotlinx.coroutines.newFixedThreadPoolContext
 
-class CadastrarProdutoFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class CadastrarProdutoFragment : Fragment() {
 
     companion object {
         fun newInstance() = CadastrarProdutoFragment()
     }
 
     private lateinit var viewModel: CadastrarProdutoViewModel
+    private val banco = DataBase
+    private var tipoProduto: Int = -1
+    private var unidade: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +39,21 @@ class CadastrarProdutoFragment : Fragment(), AdapterView.OnItemSelectedListener 
             .also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 root.spinnerUnidades.adapter = adapter }
-        root.spinnerUnidades.onItemSelectedListener = this
+        root.spinnerUnidades.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                tipoProduto = position
+            }
+
+        }
 
         ArrayAdapter.createFromResource(
             root.context,
@@ -44,9 +61,50 @@ class CadastrarProdutoFragment : Fragment(), AdapterView.OnItemSelectedListener 
             android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             root.spinnerTipos.adapter = adapter }
-        root.spinnerTipos.onItemSelectedListener = this
+        root.spinnerTipos.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                unidade = position
+            }
+
+        }
+
+        root.btnCadastrarProduto.setOnClickListener {
+            if(validarCampos()) {
+                banco.gravarProduto(getProduto(root), root.context)
+                limparCampos(root)
+            }
+        }
 
         return root
+    }
+
+    fun validarCampos() : Boolean {
+        return true
+    }
+
+    fun limparCampos(root: View) {
+        root.nomeCadastroProduto.text = null
+        root.codBarraProduto.text = null
+        root.precoProduto.text = null
+    }
+
+    fun getProduto(root: View): Produto {
+        var descri = root.nomeCadastroProduto.text.toString()
+        var tipo = this.tipoProduto
+        var unidade = this.unidade
+        var codBarra = root.codBarraProduto.text.toString()
+        var valorText = root.precoProduto.text.toString()
+
+        return Produto(codBarra, descri, tipo, unidade, valorText.toFloat())
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -54,17 +112,4 @@ class CadastrarProdutoFragment : Fragment(), AdapterView.OnItemSelectedListener 
         viewModel = ViewModelProviders.of(this).get(CadastrarProdutoViewModel::class.java)
         // TODO: Use the ViewModel
     }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val item = parent?.getItemAtPosition(position).toString()
-        Toast.makeText(activity, item, Toast.LENGTH_LONG).show()
-        Log.d("spinner item", item)
-        Log.d("spinner pos", position.toString())
-        Log.d("spinner id", id.toString())
-    }
-
 }

@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import dospropleys.android.joystock.FirebaseHelper.Autenticacao
+import dospropleys.android.joystock.FirebaseHelper.DataBase
 import dospropleys.android.joystock.R
 import kotlinx.android.synthetic.main.nav_header_main.*
 
@@ -71,5 +72,17 @@ class TelaPrincipal : AppCompatActivity() {
         textNomeUsuario.text = Autenticacao.getUsuario()?.email ?: "usuario não identificado"
 
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        DataBase.consultaProdutos()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        DataBase.desconectBaseDados()
     }
 }

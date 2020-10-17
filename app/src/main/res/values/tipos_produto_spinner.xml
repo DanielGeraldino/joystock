@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="lista_tipos">
-        <item>1 - Alimentos</item>
-        <item>2 - Bebidas</item>
-        <item>3 - Limpeza</item>
-        <item>4 - Higiene</item>
-        <item>5 - Verduras e legumes</item>
+        <item>0 - Alimentos</item>
+        <item>1 - Bebidas</item>
+        <item>2 - Limpeza</item>
+        <item>3 - Higiene</item>
+        <item>4 - Verduras e legumes</item>
     </string-array>
 </resources>
