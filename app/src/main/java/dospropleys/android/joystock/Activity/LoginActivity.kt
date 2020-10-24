@@ -33,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
         if(login != "") {
             if(senha != "") {
                 Autenticacao.login(login, senha, this)
+                abrirTelaPrincipal()
             } else {
                 Toast.makeText(this, "Favor informa a senha!", Toast.LENGTH_LONG).show()
             }

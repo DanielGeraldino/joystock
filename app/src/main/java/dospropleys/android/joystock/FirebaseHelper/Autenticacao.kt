@@ -40,5 +40,9 @@ class Autenticacao {
         fun getUsuario(): FirebaseUser? {
             return auth.currentUser
         }
+
+        fun getIdUsuario() : String? {
+            return getUsuario()?.uid
+        }
     }
 }

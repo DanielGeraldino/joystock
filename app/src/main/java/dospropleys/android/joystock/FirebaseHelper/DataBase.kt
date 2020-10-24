@@ -14,13 +14,14 @@ class DataBase {
 
     companion object {
         private val data = Firebase.database.getReference()
+        private val userId = Autenticacao.getIdUsuario()
         private lateinit var produtos: ArrayList<Produto>
 
         //EVENTOS
         private lateinit var eventoProdutos: ValueEventListener
 
         fun getDataBase(): DatabaseReference {
-            return data
+            return data.child(userId.toString())
         }
 
         fun gravarProduto(p: Produto, context: Context) {
