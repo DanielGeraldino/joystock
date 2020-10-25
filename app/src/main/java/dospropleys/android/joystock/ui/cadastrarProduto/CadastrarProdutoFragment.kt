@@ -1,5 +1,6 @@
 package dospropleys.android.joystock.ui.cadastrarProduto
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
@@ -78,8 +79,10 @@ class CadastrarProdutoFragment : Fragment() {
         }
 
         root.btnCadastrarProduto.setOnClickListener {
-            if(validarCampos()) {
-                banco.gravarProduto(getProduto(root), root.context)
+            val produto = getProduto(root)
+
+            produto?.let {
+                banco.gravarProduto(it, root.context)
                 limparCampos(root)
             }
         }
@@ -87,7 +90,20 @@ class CadastrarProdutoFragment : Fragment() {
         return root
     }
 
-    fun validarCampos() : Boolean {
+    fun validarCampos(codBarra: String, descri: String, tipo: Int, unidade: Int, valor: String, context: Context) : Boolean {
+
+        if(codBarra == "" || codBarra == null) {
+            Toast.makeText(context, "Favor informar o codigo de barra!", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(descri == "" || descri == null) {
+            Toast.makeText(context, "Favor informar o descrição do produto!", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(valor == "" || valor == null || valor.toFloat() <= 0) {
+            Toast.makeText(context, "Favor informar um valor valido!", Toast.LENGTH_SHORT).show()
+            return false
+        }
         return true
     }
 
@@ -97,14 +113,18 @@ class CadastrarProdutoFragment : Fragment() {
         root.precoProduto.text = null
     }
 
-    fun getProduto(root: View): Produto {
+    fun getProduto(root: View): Produto? {
         var descri = root.nomeCadastroProduto.text.toString()
         var tipo = this.tipoProduto
         var unidade = this.unidade
         var codBarra = root.codBarraProduto.text.toString()
         var valorText = root.precoProduto.text.toString()
 
-        return Produto(codBarra, descri, tipo, unidade, valorText.toFloat())
+        if(validarCampos(codBarra, descri, tipo, unidade, valorText, root.context)) {
+            return Produto(codBarra, descri, tipo, unidade, valorText.toFloat())
+        }
+
+        return null
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -8,7 +8,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import dospropleys.android.joystock.Model.Produto
-import kotlin.math.log
 
 class DataBase {
 
@@ -18,7 +17,8 @@ class DataBase {
         private lateinit var produtos: ArrayList<Produto>
 
         //EVENTOS
-        private lateinit var eventoProdutos: ValueEventListener
+        private lateinit var eventConsultaProduto: ValueEventListener
+        private lateinit var eventConsultaFornecedor: ValueEventListener
 
         fun getDataBase(): DatabaseReference {
             return data.child(userId.toString())
@@ -74,7 +74,7 @@ class DataBase {
         }
 
         fun desconectBaseDados() {
-            getDataBase().removeEventListener(eventoProdutos)
+            getDataBase().removeEventListener(eventConsultaProduto)
         }
     }
 }
