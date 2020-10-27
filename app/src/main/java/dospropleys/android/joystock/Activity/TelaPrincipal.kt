@@ -1,6 +1,7 @@
 package dospropleys.android.joystock.Activity
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -78,6 +79,7 @@ class TelaPrincipal : AppCompatActivity() {
         super.onStart()
 
         DataBase.consultaProdutos()
+        DataBase.consultarFornecedores()
     }
 
     override fun onStop() {

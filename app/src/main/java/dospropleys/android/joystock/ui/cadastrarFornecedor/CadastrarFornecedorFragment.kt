@@ -33,7 +33,8 @@ class CadastrarFornecedorFragment : Fragment() {
             val fornec = getFornecedor(root)
 
             fornec?.let {
-                //TODO: Salvar fornecedor
+                banco.gravarFornecedor(it, root.context)
+                limpaCampos(root)
             }
         }
 
@@ -107,6 +108,20 @@ class CadastrarFornecedorFragment : Fragment() {
 
         return null
 
+    }
+
+    private fun limpaCampos(root: View) {
+        root.nomeFornecCadastro.text = null
+        root.cnpjCadastratoFornec.text = null
+        root.enderecoCadastroFornec.text = null
+        root.numeroCadastroFornec.text = null
+        root.bairroCadastroFornec.text = null
+        root.cidadeCadastroFornec.text = null
+        root.complementoCadastroFornec.text = null
+        root.cepCadastroFornec.text = null
+        root.ufCadastroFornec.text = null
+        root.telefoneCadastroFornec.text = null
+        root. emailCadastroFornec.text = null
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

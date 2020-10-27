@@ -7,6 +7,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import dospropleys.android.joystock.Model.Fornecedor
 import dospropleys.android.joystock.Model.Produto
 
 class DataBase {
@@ -14,7 +15,8 @@ class DataBase {
     companion object {
         private val data = Firebase.database.getReference()
         private val userId = Autenticacao.getIdUsuario()
-        private lateinit var produtos: ArrayList<Produto>
+        private var produtos: ArrayList<Produto> = ArrayList()
+        private var fornecedores: ArrayList<Fornecedor> = ArrayList()
 
         //EVENTOS
         private lateinit var eventConsultaProduto: ValueEventListener
@@ -24,6 +26,7 @@ class DataBase {
             return data.child(userId.toString())
         }
 
+        // METODOS PARA MANIPULAÇÃO DO PRODUTO
         fun gravarProduto(p: Produto, context: Context) {
             var consultaP = consultaProduto(p.codigoBarra)
             if(consultaP == null) {
@@ -49,8 +52,8 @@ class DataBase {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val listaProdutos: ArrayList<Produto> = ArrayList()
 
-                        for(produto in snapshot.children) {
-                            produto.getValue<Produto>()?.let { listaProdutos.add(it) }
+                    for(produto in snapshot.children) {
+                        produto.getValue<Produto>()?.let { listaProdutos.add(it) }
                     }
 
                     produtos = listaProdutos
@@ -73,8 +76,60 @@ class DataBase {
             return null
         }
 
+        //METODOS PARA MANIPULAÇÃO DO FORNECEDOR
+        fun consultarFornecedores() {
+            val eventoCosulta = object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var listaFornec: ArrayList<Fornecedor> = ArrayList()
+
+                    for(fornec in snapshot.children) {
+                        fornec.getValue<Fornecedor>()?.let {
+                            listaFornec.add(it)
+                        }
+
+                        fornecedores = listaFornec
+                    }
+                }
+            }
+
+            getDataBase().child("fornecedores").addValueEventListener(eventoCosulta)
+        }
+
+        fun consultaFornecedor(cnpj: Int) : Fornecedor? {
+            if(fornecedores == null) { consultarFornecedores() }
+
+            fornecedores.forEach {
+                if(it.cnpj == cnpj) {
+                    return it
+                }
+            }
+            return null
+        }
+
+        fun gravarFornecedor(fornec: Fornecedor, context: Context) {
+            val fExiste = consultaFornecedor(fornec.cnpj)
+
+            if(fExiste == null) {
+                getDataBase().child("fornecedores").push().setValue(fornec)
+                    .addOnSuccessListener {
+                        Toast.makeText(context, "Fornecedor cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context, "Falha ao cadastrar o fornecedor!", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(context, "Fornecedor com mesmo cnpj já exite!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
         fun desconectBaseDados() {
             getDataBase().removeEventListener(eventConsultaProduto)
+            getDataBase().removeEventListener(eventConsultaFornecedor)
         }
     }
 }
