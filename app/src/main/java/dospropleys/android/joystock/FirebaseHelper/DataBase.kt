@@ -76,6 +76,10 @@ class DataBase {
             return null
         }
 
+        fun getProdutos() : ArrayList<Produto>{
+            return produtos
+        }
+
         //METODOS PARA MANIPULAÇÃO DO FORNECEDOR
         fun consultarFornecedores() {
             val eventoCosulta = object : ValueEventListener {
@@ -114,6 +118,7 @@ class DataBase {
             val fExiste = consultaFornecedor(fornec.cnpj)
 
             if(fExiste == null) {
+
                 getDataBase().child("fornecedores").push().setValue(fornec)
                     .addOnSuccessListener {
                         Toast.makeText(context, "Fornecedor cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
