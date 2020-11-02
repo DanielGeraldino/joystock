@@ -7,6 +7,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import dospropleys.android.joystock.Model.Empresa
 import dospropleys.android.joystock.Model.Fornecedor
 import dospropleys.android.joystock.Model.Produto
 
@@ -24,6 +25,15 @@ class DataBase {
 
         fun getDataBase(): DatabaseReference {
             return data.child(userId.toString())
+        }
+
+        fun salvarEmpresa(emp: Empresa, context: Context) {
+            getDataBase().child("dados").setValue(emp)
+                .addOnSuccessListener {
+                    Log.e("salvar empresa", "sucesso")
+                }.addOnFailureListener {
+                    Log.d("salvar empresa", it.message)
+                }
         }
 
         // METODOS PARA MANIPULAÇÃO DO PRODUTO

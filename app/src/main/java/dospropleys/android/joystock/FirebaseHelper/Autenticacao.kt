@@ -33,6 +33,23 @@ class Autenticacao {
             return isAcesso
         }
 
+        fun cadastrarEmail(login: String, senha: String, contexto: Activity) : Boolean{
+
+            auth.createUserWithEmailAndPassword(login, senha)
+                .addOnCompleteListener {
+                    if(it.isSuccessful) {
+                        Toast.makeText(contexto, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                        Log.e("cadastro", "sucesso")
+                        contexto.finish()
+                    } else {
+                        Toast.makeText(contexto, "Falha ao realizar cadastro!", Toast.LENGTH_SHORT).show()
+                        Log.d("cadastro", it.exception.toString())
+                    }
+                }
+
+            return getUsuario() != null
+        }
+
         fun desconectar() {
             auth.signOut()
         }

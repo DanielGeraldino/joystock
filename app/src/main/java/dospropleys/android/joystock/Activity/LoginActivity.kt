@@ -23,6 +23,11 @@ class LoginActivity : AppCompatActivity() {
         btnEntraSistema.setOnClickListener {
             btnEntrar()
         }
+
+        textCriarConta.setOnClickListener {
+            val intent = Intent(this@LoginActivity, CadastrarActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun btnEntrar() {
@@ -58,4 +63,5 @@ class LoginActivity : AppCompatActivity() {
             Log.d("usuario atual: ", "sem usuario")
         }
     }
+
 }
