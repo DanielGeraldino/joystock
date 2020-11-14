@@ -1,5 +1,7 @@
 package dospropleys.android.joystock.Model
 
+import dospropleys.android.joystock.FirebaseHelper.DataBase
+
 class Produto {
 
     var codigoBarra: String
@@ -28,5 +30,16 @@ class Produto {
         this.valorVenda = valor
         this.saldo = 0f
         this.id = ""
+    }
+
+    fun saida(quant: Float) : Boolean{
+        val novoSaldo = saldo - quant
+        if(id != "") {
+            if (novoSaldo >= 0) {
+                DataBase.saidaProduto(id, saldo - quant)
+                return true
+            }
+        }
+        return false
     }
 }

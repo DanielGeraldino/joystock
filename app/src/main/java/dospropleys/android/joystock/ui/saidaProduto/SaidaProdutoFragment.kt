@@ -68,18 +68,22 @@ class SaidaProdutoFragment : Fragment() {
             var textQuant= quantSaida.text.toString();
             val quant = textQuant.toFloat()
 
-            DataBase.gravarMovimento(
-                root.context,
-                produto.id,
-                produto.descricao,
-                dataSaida.text.toString(),
-                obsSaida.text.toString(),
-                tipoSaida,
-                quant,
-                false
-            )
+            if(produto.saida(quant)) {
+                DataBase.gravarMovimento(
+                    root.context,
+                    produto.id,
+                    produto.descricao,
+                    dataSaida.text.toString(),
+                    obsSaida.text.toString(),
+                    tipoSaida,
+                    quant,
+                    false
+                )
+                limparCampos()
+            } else {
+                Toast.makeText(root.context, "Favor verificar o saldo do item", Toast.LENGTH_SHORT).show()
+            }
 
-            limparCampos()
         }
 
         return root

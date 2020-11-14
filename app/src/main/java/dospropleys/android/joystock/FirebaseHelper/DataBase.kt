@@ -20,6 +20,12 @@ class DataBase {
         private var produtos: ArrayList<Produto> = ArrayList()
         private var fornecedores: ArrayList<Fornecedor> = ArrayList()
 
+        // NODES
+        val PRODUTOS = "produtos"
+        val MOVIMENTOS = "movimentos"
+        val DADOS_EMPRESA = "dados"
+        val FORNECEDORES = "fornecedores"
+
         //EVENTOS
         private lateinit var eventConsultaProduto: ValueEventListener
         private lateinit var eventConsultaFornecedor: ValueEventListener
@@ -29,7 +35,7 @@ class DataBase {
         }
 
         fun salvarEmpresa(emp: Empresa, context: Context) {
-            getDataBase().child("dados").setValue(emp)
+            getDataBase().child(DADOS_EMPRESA).setValue(emp)
                 .addOnSuccessListener {
                     Log.e("salvar empresa", "sucesso")
                 }.addOnFailureListener {
@@ -41,7 +47,7 @@ class DataBase {
         fun gravarProduto(p: Produto, context: Context) {
             var consultaP = consultaProduto(p.codigoBarra)
             if(consultaP == null) {
-                getDataBase().child("produtos").push().setValue(p)
+                getDataBase().child(PRODUTOS).push().setValue(p)
                     .addOnSuccessListener {
                         Toast.makeText(context, "Produto cadastrado", Toast.LENGTH_LONG).show()
                     }.addOnFailureListener {
@@ -51,6 +57,17 @@ class DataBase {
             } else {
                 Log.d("gravar produto", "produto " + p.codigoBarra + " ja existe.")
             }
+        }
+
+        fun saidaProduto(idProduto: String, novoSaldo: Float) {
+            Log.e("saida", idProduto)
+            getDataBase().child(PRODUTOS).child(idProduto).child("saldo").setValue(novoSaldo)
+                .addOnSuccessListener {
+                    Log.e("saldo editado", true.toString())
+                }
+                .addOnFailureListener {
+                    Log.d("saldo editado", it.toString() )
+                }
         }
 
         fun consultaProdutos() {
@@ -75,7 +92,7 @@ class DataBase {
 
             }
 
-            getDataBase().child("produtos").addValueEventListener(eventoProduto)
+            getDataBase().child(PRODUTOS).addValueEventListener(eventoProduto)
 
         }
 
@@ -96,7 +113,7 @@ class DataBase {
 
         // METODOS PARA MANILUÇÃO DO MOVIMENTO
         fun gravarMovimento(context: Context ,idItem: String, nomeItem: String, dataMov: String, obs: String, tipo: Int, quantidade: Float, tipoMovimento: Boolean) {
-            getDataBase().child("MOVIMENTO").push().setValue(
+            getDataBase().child(MOVIMENTOS).push().setValue(
                 Movimento(idItem, nomeItem,dataMov, obs, tipo, quantidade, tipoMovimento)
             ).addOnSuccessListener {
                 Toast.makeText(context, "Movimento gravado com sucesso!", Toast.LENGTH_SHORT).show()
@@ -126,7 +143,7 @@ class DataBase {
                 }
             }
 
-            getDataBase().child("fornecedores").addValueEventListener(eventoCosulta)
+            getDataBase().child(FORNECEDORES).addValueEventListener(eventoCosulta)
         }
 
         fun consultaFornecedor(cnpj: Int) : Fornecedor? {
@@ -145,7 +162,7 @@ class DataBase {
 
             if(fExiste == null) {
 
-                getDataBase().child("fornecedores").push().setValue(fornec)
+                getDataBase().child(FORNECEDORES).push().setValue(fornec)
                     .addOnSuccessListener {
                         Toast.makeText(context, "Fornecedor cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
                     }
