@@ -7,6 +7,7 @@ class Produto {
     var tipoProduto: Int
     var unidadeEstoque: Int
     var valorVenda: Float
+    var saldo: Float
 
     constructor() {
         this.codigoBarra = ""
@@ -14,6 +15,7 @@ class Produto {
         this.tipoProduto = -1
         this.unidadeEstoque = -1
         this.valorVenda = (-1.0).toFloat()
+        this.saldo = 0f
     }
 
     constructor(codigoBarra: String, descricao: String, tipo: Int, unidade: Int, valor: Float) {
@@ -22,5 +24,6 @@ class Produto {
         this.tipoProduto = tipo
         this.unidadeEstoque = unidade
         this.valorVenda = valor
+        this.saldo = 0f
     }
 }

@@ -4,24 +4,30 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Filter
-import android.widget.Toast
+import android.widget.*
 import dospropleys.android.joystock.Model.Produto
 import dospropleys.android.joystock.R
 import kotlinx.android.synthetic.main.produto_item_adapter.view.*
 
 
-class ProdutosAdapter() : BaseAdapter() {
+class ProdutosAdapter() : BaseAdapter(), Filterable {
 
     lateinit var listaInicial: ArrayList<Produto>
     lateinit var context: Context
     lateinit var lista: ArrayList<Produto>
+    var textComplete: AutoCompleteTextView? = null
 
     constructor(c: Context, lista: ArrayList<Produto>) : this() {
         this.context = c
         this.lista = lista
         this.listaInicial = lista
+    }
+
+    constructor(c: Context, lista: ArrayList<Produto>, autoCompleteTextView: AutoCompleteTextView) : this() {
+        this.context = c
+        this.lista = lista
+        this.listaInicial = lista
+        this.textComplete = autoCompleteTextView
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -33,6 +39,7 @@ class ProdutosAdapter() : BaseAdapter() {
 
         layout.setOnClickListener {
             Toast.makeText(context, produto.descricao, Toast.LENGTH_SHORT).show()
+            textComplete?.setText(produto.descricao)
         }
 
         layout.nomeItem.text = produto.descricao
@@ -53,7 +60,14 @@ class ProdutosAdapter() : BaseAdapter() {
         return lista.size
     }
 
-    fun filtro(): Filter {
+    fun insertItens(lista: ArrayList<Produto>) {
+        lista.forEach {
+            this.lista.add(it)
+        }
+        this.notifyDataSetChanged()
+    }
+
+    override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val queryString = constraint?.toString()?.toLowerCase()
@@ -78,5 +92,6 @@ class ProdutosAdapter() : BaseAdapter() {
             }
 
         }
+
     }
 }

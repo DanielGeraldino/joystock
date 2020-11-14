@@ -48,6 +48,9 @@ class TelaPrincipal : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        
+        DataBase.consultaProdutos()
+        DataBase.consultarFornecedores()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -77,9 +80,6 @@ class TelaPrincipal : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
-        DataBase.consultaProdutos()
-        DataBase.consultarFornecedores()
     }
 
     override fun onStop() {

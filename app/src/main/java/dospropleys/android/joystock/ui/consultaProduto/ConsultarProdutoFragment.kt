@@ -1,13 +1,11 @@
 package dospropleys.android.joystock.ui.consultaProduto
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
 import dospropleys.android.joystock.Adapter.ProdutosAdapter
@@ -33,7 +31,7 @@ class ConsultarProdutoFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.consultar_produto_fragment, container, false)
         atualizarLista()
-        var adapterItens = ProdutosAdapter(root.context, listaProduto)
+        val adapterItens = ProdutosAdapter(root.context, listaProduto)
         Log.e("tam lista", listaProduto.size.toString())
         root.listagemConsultaItem.adapter = adapterItens
 
@@ -44,15 +42,21 @@ class ConsultarProdutoFragment : Fragment() {
                 Toast.LENGTH_SHORT).show()
         }
 
+        if(listaProduto.size == 0) {
+            atualizarLista()
+            adapterItens.insertItens(listaProduto)
+        }
+
         root.consultaProduto.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     Toast.makeText(root.context, query, Toast.LENGTH_LONG).show()
+
                     return false;
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    adapterItens.filtro().filter(newText)
+                    adapterItens.getFilter().filter(newText)
                     return false
                 }
 
@@ -64,7 +68,6 @@ class ConsultarProdutoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        listaProduto = banco.getProdutos()
     }
 
     override fun onStart() {

@@ -1,13 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.saidaProduto.SaidaProdutoFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <Button
+        android:id="@+id/btnFinalizarSaida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="FINALIZAR"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textQuantSaida"
+        tools:layout_editor_absoluteX="160dp" />
 
-</FrameLayout>
+    <Spinner
+        android:id="@+id/spinnerSaidaProduto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/textObservacaoSaida"
+        app:layout_constraintEnd_toEndOf="@+id/autoPesqSaida"
+        app:layout_constraintStart_toStartOf="@+id/autoPesqSaida"
+        app:layout_constraintTop_toBottomOf="@+id/autoPesqSaida" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textQuantSaida"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnFinalizarSaida"
+        app:layout_constraintEnd_toEndOf="@+id/autoPesqSaida"
+        app:layout_constraintStart_toStartOf="@+id/autoPesqSaida"
+        app:layout_constraintTop_toBottomOf="@+id/textObservacaoSaida">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite a quantidade"
+            android:inputType="number"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textObservacaoSaida"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/textQuantSaida"
+        app:layout_constraintEnd_toEndOf="@+id/autoPesqSaida"
+        app:layout_constraintStart_toStartOf="@+id/autoPesqSaida"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSaidaProduto">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite uma observação"
+            android:inputType="text"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <AutoCompleteTextView
+        android:id="@+id/autoPesqSaida"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:autoText="false"
+        android:completionThreshold="2"
+        android:hint="Digite o nome do item ou codigo"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerSaidaProduto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lista_tipo_saida">
+        <item>Venda</item>
+        <item>Vencimento</item>
+        <item>Avaria</item>
+    </string-array>
+</resources>
