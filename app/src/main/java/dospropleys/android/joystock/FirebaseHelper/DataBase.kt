@@ -9,6 +9,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import dospropleys.android.joystock.Model.Empresa
 import dospropleys.android.joystock.Model.Fornecedor
+import dospropleys.android.joystock.Model.Movimento
 import dospropleys.android.joystock.Model.Produto
 
 class DataBase {
@@ -63,7 +64,10 @@ class DataBase {
                     val listaProdutos: ArrayList<Produto> = ArrayList()
 
                     for(produto in snapshot.children) {
-                        produto.getValue<Produto>()?.let { listaProdutos.add(it) }
+                        produto.getValue<Produto>()?.let {
+                            it.id = produto.key.toString()
+                            listaProdutos.add(it)
+                        }
                     }
 
                     produtos = listaProdutos
@@ -88,6 +92,18 @@ class DataBase {
 
         fun getProdutos() : ArrayList<Produto>{
             return produtos
+        }
+
+        // METODOS PARA MANILUÇÃO DO MOVIMENTO
+        fun gravarMovimento(context: Context ,idItem: String, nomeItem: String, dataMov: String, obs: String, tipo: Int, quantidade: Float, tipoMovimento: Boolean) {
+            getDataBase().child("MOVIMENTO").push().setValue(
+                Movimento(idItem, nomeItem,dataMov, obs, tipo, quantidade, tipoMovimento)
+            ).addOnSuccessListener {
+                Toast.makeText(context, "Movimento gravado com sucesso!", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(context, "falha ao grava o movimento!", Toast.LENGTH_SHORT).show()
+                Log.d("grava movimento", it.toString())
+            }
         }
 
         //METODOS PARA MANIPULAÇÃO DO FORNECEDOR

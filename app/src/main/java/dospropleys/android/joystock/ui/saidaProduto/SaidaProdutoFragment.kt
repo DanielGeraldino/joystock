@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.*
 import dospropleys.android.joystock.Adapter.ProdutosAdapter
 import dospropleys.android.joystock.FirebaseHelper.DataBase
+import dospropleys.android.joystock.Model.Movimento
 import dospropleys.android.joystock.R
 import kotlinx.android.synthetic.main.saida_produto_fragment.*
 import kotlinx.android.synthetic.main.saida_produto_fragment.view.*
@@ -62,7 +63,34 @@ class SaidaProdutoFragment : Fragment() {
 
         root.autoPesqSaida.setAdapter(adapter)
 
+        root.btnFinalizarSaida.setOnClickListener {
+            val produto = adapter.getItemFiltrado()
+            var textQuant= quantSaida.text.toString();
+            val quant = textQuant.toFloat()
+
+            DataBase.gravarMovimento(
+                root.context,
+                produto.id,
+                produto.descricao,
+                dataSaida.text.toString(),
+                obsSaida.text.toString(),
+                tipoSaida,
+                quant,
+                false
+            )
+
+            limparCampos()
+        }
+
         return root
+    }
+
+    private fun limparCampos() {
+        autoPesqSaida.setText("")
+        dataSaida.setText("")
+        obsSaida.setText("")
+        quantSaida.setText("")
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

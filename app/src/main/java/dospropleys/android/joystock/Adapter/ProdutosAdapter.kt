@@ -1,6 +1,7 @@
 package dospropleys.android.joystock.Adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,9 @@ class ProdutosAdapter() : BaseAdapter(), Filterable {
         val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val layout: View = inflater.inflate(R.layout.produto_item_adapter, null)
 
+
         layout.setOnClickListener {
+
             Toast.makeText(context, produto.descricao, Toast.LENGTH_SHORT).show()
             textComplete?.setText(produto.descricao)
         }
@@ -65,6 +68,10 @@ class ProdutosAdapter() : BaseAdapter(), Filterable {
             this.lista.add(it)
         }
         this.notifyDataSetChanged()
+    }
+
+    fun getItemFiltrado() : Produto {
+        return lista[0]
     }
 
     override fun getFilter(): Filter {

@@ -15,7 +15,7 @@
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textQuantSaida"
-        tools:layout_editor_absoluteX="160dp" />
+        tools:layout_editor_absoluteX="162dp" />
 
     <Spinner
         android:id="@+id/spinnerSaidaProduto"
@@ -23,21 +23,22 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/textObservacaoSaida"
-        app:layout_constraintEnd_toEndOf="@+id/autoPesqSaida"
-        app:layout_constraintStart_toStartOf="@+id/autoPesqSaida"
-        app:layout_constraintTop_toBottomOf="@+id/autoPesqSaida" />
+        app:layout_constraintEnd_toEndOf="@+id/dataSaida"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataSaida" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textQuantSaida"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/btnFinalizarSaida"
-        app:layout_constraintEnd_toEndOf="@+id/autoPesqSaida"
-        app:layout_constraintStart_toStartOf="@+id/autoPesqSaida"
+        app:layout_constraintEnd_toEndOf="@+id/textObservacaoSaida"
+        app:layout_constraintStart_toStartOf="@+id/textObservacaoSaida"
         app:layout_constraintTop_toBottomOf="@+id/textObservacaoSaida">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/quantSaida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Digite a quantidade"
@@ -51,11 +52,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/textQuantSaida"
-        app:layout_constraintEnd_toEndOf="@+id/autoPesqSaida"
-        app:layout_constraintStart_toStartOf="@+id/autoPesqSaida"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerSaidaProduto"
+        app:layout_constraintStart_toStartOf="@+id/spinnerSaidaProduto"
         app:layout_constraintTop_toBottomOf="@+id/spinnerSaidaProduto">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/obsSaida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Digite uma observação"
@@ -72,13 +74,26 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:autoText="false"
+        android:completionHint="Selecione o item"
         android:completionThreshold="2"
         android:hint="Digite o nome do item ou codigo"
         android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerSaidaProduto"
+        app:layout_constraintBottom_toTopOf="@+id/dataSaida"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
+
+    <EditText
+        android:id="@+id/dataSaida"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Digite a data da saida"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerSaidaProduto"
+        app:layout_constraintEnd_toEndOf="@+id/autoPesqSaida"
+        app:layout_constraintStart_toStartOf="@+id/autoPesqSaida"
+        app:layout_constraintTop_toBottomOf="@+id/autoPesqSaida" />
 </androidx.constraintlayout.widget.ConstraintLayout>
