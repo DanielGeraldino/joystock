@@ -10,11 +10,13 @@ class DataHelper {
 
     companion object {
 
-        fun getDataAtual(): String? {
-            val currentDateTime = LocalDateTime.now()
-            return currentDateTime.format(DateTimeFormatter.ofPattern("M/d/y H:m:ss"))
+        fun getDataAtual(): String {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val currentDateTime = LocalDateTime.now()
+                return currentDateTime.format(DateTimeFormatter.ofPattern("M/d/y H:m:ss"))
+            }
+            return ""
         }
-
     }
-
 }

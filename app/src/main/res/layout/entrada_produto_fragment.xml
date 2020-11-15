@@ -7,40 +7,23 @@
     tools:context=".ui.entradaProduto.EntradaProdutoFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editFornecEntrada"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39"
-        app:layout_constraintVertical_chainStyle="packed">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Digite o nome do fornecedor"
-            android:singleLine="true"
-            android:textColorLink="@color/colorPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editDataEmiEntrada"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         app:helperTextEnabled="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintBottom_toTopOf="@+id/quantidadeEntrada"
+        app:layout_constraintEnd_toEndOf="@+id/autoNomeItemEntrada"
+        app:layout_constraintStart_toStartOf="@+id/autoNomeItemEntrada"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.santalu.maskara.widget.MaskEditText
-            android:id="@+id/input"
+            android:id="@+id/dataNFEntrada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Digite a data de emissão"
             android:inputType="number"
+            android:singleLine="true"
             app:mask="__/__/____"
             app:maskCharacter="_"
             app:maskStyle="completable" />
@@ -50,12 +33,13 @@
         android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/editDataEmiEntrada"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editFornecEntrada">
+        app:layout_constraintTop_toBottomOf="@+id/autoNomeFornecEntrada">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editNumNFEntrada"
@@ -70,16 +54,59 @@
         android:id="@+id/btnFechamentoEntrada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:background="@color/colorPrimary"
         android:padding="3dp"
         android:text="fechamento"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editDataEmiEntrada"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/editDataEmiEntrada"
-        app:layout_constraintTop_toBottomOf="@+id/editDataEmiEntrada"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintEnd_toEndOf="@+id/autoNomeItemEntrada"
+        app:layout_constraintStart_toStartOf="@+id/autoNomeItemEntrada"
+        app:layout_constraintTop_toBottomOf="@+id/quantidadeEntrada" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoNomeItemEntrada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:completionHint="Selecione o produto"
+        android:completionThreshold="2"
+        android:hint="Digite o nome do produto"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/autoNomeFornecEntrada"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoNomeFornecEntrada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:completionHint="Selecione o fornecedor"
+        android:completionThreshold="2"
+        android:hint="Digite o nome do fornecedor"
+        android:nextFocusDown="@id/editNumNFEntrada"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="@+id/autoNomeItemEntrada"
+        app:layout_constraintStart_toStartOf="@+id/autoNomeItemEntrada"
+        app:layout_constraintTop_toBottomOf="@+id/autoNomeItemEntrada" />
+
+    <EditText
+        android:id="@+id/quantidadeEntrada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="Digite a quantidade"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnFechamentoEntrada"
+        app:layout_constraintEnd_toEndOf="@+id/autoNomeItemEntrada"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/autoNomeItemEntrada"
+        app:layout_constraintTop_toBottomOf="@+id/editDataEmiEntrada" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

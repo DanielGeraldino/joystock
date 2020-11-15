@@ -50,7 +50,12 @@ class LoginActivity : AppCompatActivity() {
 
     fun abrirTelaPrincipal() {
         var intent: Intent = Intent(this@LoginActivity, TelaPrincipal::class.java)
-        startActivity(intent)
+        if(Autenticacao.getUsuario() != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "Favor verificar as credencias!", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     public override fun onStart() {

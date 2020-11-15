@@ -1,5 +1,6 @@
 package dospropleys.android.joystock.Model
 
+import android.util.Log
 import dospropleys.android.joystock.FirebaseHelper.DataBase
 
 class Produto {
@@ -36,9 +37,19 @@ class Produto {
         val novoSaldo = saldo - quant
         if(id != "") {
             if (novoSaldo >= 0) {
-                DataBase.saidaProduto(id, saldo - quant)
+                DataBase.gravarSaldo(id, saldo - quant)
                 return true
             }
+        }
+        return false
+    }
+
+    fun entrada(quant: Float) : Boolean {
+        val novoSaldo = saldo + quant
+        Log.e("produto", id)
+        if("" != id) {
+            DataBase.gravarSaldo(id, novoSaldo)
+            return true
         }
         return false
     }

@@ -85,14 +85,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <EditText
+    <com.santalu.maskara.widget.MaskEditText
         android:id="@+id/dataSaida"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Digite a data da saida"
-        android:inputType="date"
+        android:inputType="number"
+        app:mask="__/__/____"
         app:layout_constraintBottom_toTopOf="@+id/spinnerSaidaProduto"
         app:layout_constraintEnd_toEndOf="@+id/autoPesqSaida"
         app:layout_constraintStart_toStartOf="@+id/autoPesqSaida"

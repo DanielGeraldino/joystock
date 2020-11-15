@@ -80,11 +80,12 @@ class TelaPrincipal : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        DataBase.consultaProdutos()
+        DataBase.consultarFornecedores()
     }
 
     override fun onStop() {
         super.onStop()
-
         DataBase.desconectBaseDados()
     }
 }

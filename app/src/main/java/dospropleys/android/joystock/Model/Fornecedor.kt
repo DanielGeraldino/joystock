@@ -13,6 +13,7 @@ class Fornecedor {
     var uf: String
     var telefone: Int
     var email: String
+    var idFornec: String
 
     constructor(nome: String, cnpj: Int, endereco: String, numero: Int, bairro: String, cidade: String, cep: Int, complemento: String, uf: String, telefone: Int, email: String) {
         this.nome = nome
@@ -26,6 +27,7 @@ class Fornecedor {
         this.uf = uf
         this.telefone = telefone
         this.email = email
+        this.idFornec = ""
     }
 
     constructor() {
@@ -40,5 +42,6 @@ class Fornecedor {
         this.uf = ""
         this.telefone = -1
         this.email = ""
+        this.idFornec = ""
     }
 }

@@ -59,7 +59,7 @@ class DataBase {
             }
         }
 
-        fun saidaProduto(idProduto: String, novoSaldo: Float) {
+        fun gravarSaldo(idProduto: String, novoSaldo: Float) {
             Log.e("saida", idProduto)
             getDataBase().child(PRODUTOS).child(idProduto).child("saldo").setValue(novoSaldo)
                 .addOnSuccessListener {
@@ -123,6 +123,18 @@ class DataBase {
             }
         }
 
+        fun gravarMovimento(context: Context,
+            idItem: String, nomeItem:String, nomeFornec: String, cnpj: Int, dataMov: String, nf: String, tipo: Int, quantidade: Float, entrada: Boolean) {
+            getDataBase().child(MOVIMENTOS).push().setValue(
+                Movimento(idItem, nomeItem,dataMov, "", tipo, quantidade, entrada, nomeFornec, cnpj, nf)
+            ).addOnSuccessListener {
+                Toast.makeText(context, "Movimento gravado com sucesso!", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(context, "falha ao grava o movimento!", Toast.LENGTH_SHORT).show()
+                Log.d("grava movimento", it.toString())
+            }
+        }
+
         //METODOS PARA MANIPULAÇÃO DO FORNECEDOR
         fun consultarFornecedores() {
             val eventoCosulta = object : ValueEventListener {
@@ -135,6 +147,7 @@ class DataBase {
 
                     for(fornec in snapshot.children) {
                         fornec.getValue<Fornecedor>()?.let {
+                            it.idFornec = fornec.key.toString()
                             listaFornec.add(it)
                         }
 
@@ -172,6 +185,10 @@ class DataBase {
             } else {
                 Toast.makeText(context, "Fornecedor com mesmo cnpj já exite!", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        fun getForncedores() : ArrayList<Fornecedor>{
+            return fornecedores
         }
 
 
