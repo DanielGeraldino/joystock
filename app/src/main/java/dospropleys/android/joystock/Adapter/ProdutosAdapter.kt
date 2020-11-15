@@ -42,7 +42,15 @@ class ProdutosAdapter() : BaseAdapter(), Filterable {
         layout.setOnClickListener {
 
             Toast.makeText(context, produto.descricao, Toast.LENGTH_SHORT).show()
-            textComplete?.setText(produto.descricao)
+            textComplete?.let {
+                it.setText(produto.descricao)
+                if(it.text.length > 2) {
+                    it.setSelection(it.text.length)
+                    it.dismissDropDown()
+                } else {
+                    it.showDropDown()
+                }
+            }
         }
 
         layout.nomeItem.text = produto.descricao

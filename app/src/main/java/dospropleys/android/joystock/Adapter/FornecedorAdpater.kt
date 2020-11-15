@@ -44,7 +44,12 @@ class FornecedorAdpater() : BaseAdapter(), Filterable {
             Toast.makeText(context, fornecedor.nome, Toast.LENGTH_SHORT).show()
             textComplete?.let {
                 it.setText(fornecedor.nome)
-
+                if(it.text.length > 2) {
+                    it.setSelection(it.text.length)
+                    it.dismissDropDown()
+                } else {
+                    it.showDropDown()
+                }
             }
         }
 
