@@ -30,7 +30,9 @@ class ConsultarProdutoFragment : Fragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.consultar_produto_fragment, container, false)
+
         atualizarLista()
+
         val adapterItens = ProdutosAdapter(root.context, listaProduto)
         Log.e("tam lista", listaProduto.size.toString())
         root.listagemConsultaItem.adapter = adapterItens

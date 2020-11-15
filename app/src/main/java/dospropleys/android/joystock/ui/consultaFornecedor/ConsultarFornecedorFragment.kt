@@ -6,7 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
+import dospropleys.android.joystock.Adapter.FornecedorAdpater
+import dospropleys.android.joystock.FirebaseHelper.DataBase
 import dospropleys.android.joystock.R
+import kotlinx.android.synthetic.main.consultar_fornecedor_fragment.*
+import kotlinx.android.synthetic.main.consultar_fornecedor_fragment.view.*
 
 class ConsultarFornecedorFragment : Fragment() {
 
@@ -14,19 +20,35 @@ class ConsultarFornecedorFragment : Fragment() {
         fun newInstance() = ConsultarFornecedorFragment()
     }
 
-    private lateinit var viewModel: ConsultarFornecedorViewModel
+    var fornecedores = DataBase.getForncedores()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.consultar_fornecedor_fragment, container, false)
-    }
+        val root = inflater.inflate(R.layout.consultar_fornecedor_fragment, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ConsultarFornecedorViewModel::class.java)
-        // TODO: Use the ViewModel
+        val adapter = FornecedorAdpater(root.context, fornecedores)
+
+        root.listagemConsultaFornec.adapter = adapter
+
+        root.listagemConsultaFornec.setOnItemClickListener { parent, view, position, id ->
+            Toast.makeText(root.context, adapter.getItem(position).toString() , Toast.LENGTH_SHORT).show()
+        }
+
+        root.consultaFornecedor.setOnQueryTextListener( object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.getFilter().filter(newText)
+                return false
+            }
+
+        })
+
+        return root
     }
 
 }
