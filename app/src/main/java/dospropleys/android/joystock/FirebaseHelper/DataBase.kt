@@ -59,6 +59,21 @@ class DataBase {
             }
         }
 
+        fun salvarAlteracao(produto: Produto, context: Context) {
+            getDataBase().child(PRODUTOS).child(produto.id).setValue(produto)
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Produto alterado com sucesso!", Toast.LENGTH_SHORT).show()
+                    for((i, p) in produtos.withIndex()) {
+                        if(p.id == produto.id) {
+                            produtos[i] = produto
+                            break
+                        }
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(context, "Falha ao alterar produto, tente novamente.", Toast.LENGTH_SHORT).show()
+                }
+        }
+
         fun gravarSaldo(idProduto: String, novoSaldo: Float) {
             Log.e("saida", idProduto)
             getDataBase().child(PRODUTOS).child(idProduto).child("saldo").setValue(novoSaldo)

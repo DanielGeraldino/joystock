@@ -84,8 +84,8 @@ class TelaPrincipal : AppCompatActivity() {
         DataBase.consultarFornecedores()
     }
 
-    override fun onStop() {
-        super.onStop()
-        DataBase.desconectBaseDados()
+    override fun onDestroy() {
+        super.onDestroy()
+        //DataBase.desconectBaseDados()
     }
 }

@@ -22,10 +22,9 @@ class CadastrarProdutoFragment : Fragment() {
         fun newInstance() = CadastrarProdutoFragment()
     }
 
-    private lateinit var viewModel: CadastrarProdutoViewModel
     private val banco = DataBase
-    private var tipoProduto: Int = -1
-    private var unidade: Int = -1
+    private var tipoProduto: Int = 0
+    private var unidade: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +39,7 @@ class CadastrarProdutoFragment : Fragment() {
             .also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 root.spinnerUnidades.adapter = adapter }
+
         root.spinnerUnidades.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
@@ -51,7 +51,8 @@ class CadastrarProdutoFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                tipoProduto = position
+                unidade = position
+                Log.e("unidade", unidade.toString())
             }
 
         }
@@ -62,6 +63,7 @@ class CadastrarProdutoFragment : Fragment() {
             android.R.layout.simple_spinner_item).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             root.spinnerTipos.adapter = adapter }
+
         root.spinnerTipos.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
@@ -73,7 +75,8 @@ class CadastrarProdutoFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                unidade = position
+                tipoProduto = position
+                Log.e("tipo selec", tipoProduto.toString())
             }
 
         }
@@ -125,11 +128,5 @@ class CadastrarProdutoFragment : Fragment() {
         }
 
         return null
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CadastrarProdutoViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 }

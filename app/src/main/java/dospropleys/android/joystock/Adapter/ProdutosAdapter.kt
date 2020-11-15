@@ -1,13 +1,17 @@
 package dospropleys.android.joystock.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import dospropleys.android.joystock.Activity.ProdutoActivity
+import dospropleys.android.joystock.Activity.TelaPrincipal
 import dospropleys.android.joystock.Model.Produto
 import dospropleys.android.joystock.R
+import dospropleys.android.joystock.ui.consultaProduto.ConsultarProdutoFragment
 import kotlinx.android.synthetic.main.produto_item_adapter.view.*
 
 
@@ -41,15 +45,20 @@ class ProdutosAdapter() : BaseAdapter(), Filterable {
 
         layout.setOnClickListener {
 
-            Toast.makeText(context, produto.descricao, Toast.LENGTH_SHORT).show()
-            textComplete?.let {
-                it.setText(produto.descricao)
-                if(it.text.length > 2) {
-                    it.setSelection(it.text.length)
-                    it.dismissDropDown()
-                } else {
-                    it.showDropDown()
+            if(textComplete != null) {
+                textComplete?.let {
+                    it.setText(produto.descricao)
+                    if(it.text.length > 2) {
+                        it.setSelection(it.text.length)
+                        it.dismissDropDown()
+                    } else {
+                        it.showDropDown()
+                    }
                 }
+            } else {
+                //Significa que esta na tela de consulta itens
+                abrirCadastro(produto)
+
             }
         }
 
@@ -59,7 +68,13 @@ class ProdutosAdapter() : BaseAdapter(), Filterable {
 
     }
 
-    override fun getItem(position: Int): Any {
+    fun abrirCadastro(p: Produto) {
+        var intent: Intent = Intent(context, ProdutoActivity::class.java)
+        intent.putExtra("produto", p)
+        context.startActivity(intent)
+    }
+
+    override fun getItem(position: Int): Produto {
         return lista.get(position)
     }
 

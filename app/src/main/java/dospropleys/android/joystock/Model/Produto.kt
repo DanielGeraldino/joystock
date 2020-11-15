@@ -1,9 +1,18 @@
 package dospropleys.android.joystock.Model
 
+import android.content.Context
+import android.media.audiofx.DynamicsProcessing
 import android.util.Log
 import dospropleys.android.joystock.FirebaseHelper.DataBase
+import java.io.Serializable
 
-class Produto {
+class Produto : Serializable {
+
+    companion object {
+        fun salvarAlteração(p: Produto, context: Context) {
+            DataBase.salvarAlteracao(p, context)
+        }
+    }
 
     var codigoBarra: String
     var descricao: String
@@ -53,4 +62,5 @@ class Produto {
         }
         return false
     }
+
 }
