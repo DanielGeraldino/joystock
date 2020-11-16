@@ -10,7 +10,6 @@
         android:id="@+id/circleImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/frutas"
         app:civ_border_color="#ff000000"
@@ -19,7 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -28,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/spinnerTipos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +53,7 @@
         android:id="@+id/spinnerUnidades"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
         app:layout_constraintEnd_toEndOf="@+id/spinnerTipos"
         app:layout_constraintStart_toStartOf="@+id/spinnerTipos"
@@ -67,8 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
-        app:layout_constraintEnd_toEndOf="@+id/editNomeProdutoCadastro"
-        app:layout_constraintStart_toStartOf="@+id/editNomeProdutoCadastro"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerUnidades"
+        app:layout_constraintStart_toStartOf="@+id/spinnerUnidades"
         app:layout_constraintTop_toBottomOf="@+id/spinnerUnidades">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -83,10 +81,10 @@
         android:id="@+id/textInputLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCadastrarProduto"
-        app:layout_constraintEnd_toEndOf="@+id/editNomeProdutoCadastro"
-        app:layout_constraintStart_toStartOf="@+id/editNomeProdutoCadastro"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textSaldo"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -102,13 +100,50 @@
         android:id="@+id/btnCadastrarProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/colorPrimary"
         android:text="SALVAR"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnTelaMovimento"
+        app:layout_constraintEnd_toStartOf="@+id/btnTelaMovimento"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="SALDO: "
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textSaldo"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout4" />
+
+    <TextView
+        android:id="@+id/textSaldo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnCadastrarProduto"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+    <Button
+        android:id="@+id/btnTelaMovimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorPrimary"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="movimento"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

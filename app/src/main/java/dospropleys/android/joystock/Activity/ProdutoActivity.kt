@@ -25,6 +25,7 @@ class ProdutoActivity : AppCompatActivity() {
         nomeCadastroProduto.setText(produto.descricao)
         codBarraProduto.setText(produto.codigoBarra)
         precoProduto.setText(produto.valorVenda.toString())
+        textSaldo.text = produto.saldo.toString()
 
         //SpinnerUnidades
         ArrayAdapter.createFromResource(
