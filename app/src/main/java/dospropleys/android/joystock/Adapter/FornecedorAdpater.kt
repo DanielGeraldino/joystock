@@ -1,10 +1,13 @@
 package dospropleys.android.joystock.Adapter
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import dospropleys.android.joystock.Activity.FornecedorActivity
 import dospropleys.android.joystock.Model.Fornecedor
 import dospropleys.android.joystock.Model.Produto
 import dospropleys.android.joystock.R
@@ -42,14 +45,19 @@ class FornecedorAdpater() : BaseAdapter(), Filterable {
         layout.setOnClickListener {
 
             Toast.makeText(context, fornecedor.nome, Toast.LENGTH_SHORT).show()
-            textComplete?.let {
-                it.setText(fornecedor.nome)
-                if(it.text.length > 2) {
-                    it.setSelection(it.text.length)
-                    it.dismissDropDown()
-                } else {
-                    it.showDropDown()
+            if(textComplete != null) {
+                textComplete?.let {
+                    it.setText(fornecedor.nome)
+                    if(it.text.length > 2) {
+                        it.setSelection(it.text.length)
+                        it.dismissDropDown()
+                    } else {
+                        it.showDropDown()
+                    }
                 }
+            } else {
+                Log.d("idFornec", fornecedor.idFornec)
+                abrirTelaForncedor(fornecedor)
             }
         }
 
@@ -58,6 +66,13 @@ class FornecedorAdpater() : BaseAdapter(), Filterable {
         return layout
 
     }
+
+    fun abrirTelaForncedor(f: Fornecedor) {
+        var intent = Intent(context, FornecedorActivity::class.java)
+        intent.putExtra("fornecedor", f)
+        context.startActivity(intent)
+    }
+
 
     override fun getItem(position: Int): Any {
         return lista.get(position)

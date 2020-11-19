@@ -1,6 +1,18 @@
 package dospropleys.android.joystock.Model
 
-class Fornecedor {
+import android.content.Context
+import dospropleys.android.joystock.FirebaseHelper.DataBase
+import java.io.Serializable
+
+class Fornecedor : Serializable {
+
+    companion object {
+
+        fun salvarFornecedor(fornecedor: Fornecedor, context: Context) {
+            DataBase.salvarAlteracao(fornecedor, context)
+        }
+
+    }
 
     var nome: String
     var cnpj: Int
