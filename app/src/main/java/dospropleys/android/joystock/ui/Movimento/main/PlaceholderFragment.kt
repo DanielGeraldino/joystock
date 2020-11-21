@@ -26,16 +26,12 @@ class PlaceholderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_movimento, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
 
         teste = if(arguments?.getInt(ARG_SECTION_NUMBER) == 1) {
             "pagina 1"
         } else {
             "pagina 2"
         }
-
-        textView.setText(teste)
-
 
         return root
     }
