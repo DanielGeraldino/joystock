@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.FornecedorActivity"></activity>
+        <activity
+            android:name=".ui.Movimento.MovimentoActivity"
+            android:label="@string/title_activity_movimento"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activity.FornecedorActivity" />
         <activity android:name=".Activity.CadastrarActivity" />
         <activity android:name=".Activity.ProdutoActivity" />
         <activity

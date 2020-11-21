@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import dospropleys.android.joystock.Model.Produto
 import dospropleys.android.joystock.R
+import dospropleys.android.joystock.ui.Movimento.MovimentoActivity
 import kotlinx.android.synthetic.main.activity_produto.*
 import kotlinx.android.synthetic.main.cadastrar_produto_fragment.view.*
 
@@ -79,6 +80,12 @@ class ProdutoActivity : AppCompatActivity() {
                 tipoProdutoPos = position
             }
 
+        }
+
+        btnTelaMovimento.setOnClickListener {
+            val intent = Intent(this, MovimentoActivity::class.java)
+            intent.putExtra("id_produto", produto.id)
+            startActivity(intent)
         }
 
         btnCadastrarProduto.setOnClickListener {

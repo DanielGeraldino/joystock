@@ -19,5 +19,8 @@
     <string name="menu_cadastrar_produto">Cadastrar produto</string>
     <string name="menu_cadastrar_fornec">Cadastrar fornecedor</string>
     <string name="search_hint">Digite o nome do item</string>
+    <string name="title_activity_movimento">MovimentoActivity</string>
+    <string name="tab_text_1">Entradas</string>
+    <string name="tab_text_2">Saidas</string>
 
 </resources>
