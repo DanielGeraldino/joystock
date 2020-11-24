@@ -15,6 +15,20 @@ class Movimento {
     var cnpj: Int = -1
     var nfNumero = ""
 
+    constructor() {
+        idItem = ""
+        itemDescri = ""
+        data = ""
+        observacao = ""
+        tipo = -1
+        dataRegistro = ""
+        quant = 0f
+        tipoMovimento = ""
+        nomeFornecedor = ""
+        cnpj = -1
+        nfNumero = ""
+    }
+
     constructor(keyItem: String, nomeItem: String, data: String, obs: String, tp: Int, quantidade: Float, tipoMov: Boolean) {
         this.idItem = keyItem
         this.itemDescri = nomeItem

@@ -10,6 +10,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import dospropleys.android.joystock.Adapter.FornecedorAdpater
 import dospropleys.android.joystock.FirebaseHelper.DataBase
+import dospropleys.android.joystock.Model.Fornecedor
 import dospropleys.android.joystock.R
 import kotlinx.android.synthetic.main.consultar_fornecedor_fragment.*
 import kotlinx.android.synthetic.main.consultar_fornecedor_fragment.view.*
@@ -20,7 +21,14 @@ class ConsultarFornecedorFragment : Fragment() {
         fun newInstance() = ConsultarFornecedorFragment()
     }
 
-    var fornecedores = DataBase.getForncedores()
+    private var fornecedores = ArrayList<Fornecedor>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        fornecedores = DataBase.getForncedores()
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

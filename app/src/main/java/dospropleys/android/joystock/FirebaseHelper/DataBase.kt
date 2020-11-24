@@ -19,6 +19,7 @@ class DataBase {
         private val userId = Autenticacao.getIdUsuario()
         private var produtos: ArrayList<Produto> = ArrayList()
         private var fornecedores: ArrayList<Fornecedor> = ArrayList()
+        private var movimentos: ArrayList<Movimento> = ArrayList()
 
         // NODES
         val PRODUTOS = "produtos"
@@ -29,6 +30,7 @@ class DataBase {
         //EVENTOS
         private lateinit var eventConsultaProduto: ValueEventListener
         private lateinit var eventConsultaFornecedor: ValueEventListener
+        private lateinit var eventMovimento: ValueEventListener
 
         fun getDataBase(): DatabaseReference {
             return data.child(userId.toString())
@@ -222,10 +224,50 @@ class DataBase {
             return fornecedores
         }
 
+        // Movimentos
+        fun eventoMovimento() {
+
+            var auxMov = ArrayList<Movimento>()
+
+            eventMovimento = object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    for (movimento in snapshot.children) {
+                        movimento.getValue<Movimento>()?.let {
+                            auxMov.add(it)
+                        }
+                    }
+                    movimentos = auxMov
+                }
+
+            }
+
+            getDataBase().child(MOVIMENTOS).addValueEventListener(eventMovimento)
+        }
+
+        fun getMovimento(idItem: String?) : ArrayList<Movimento>{
+
+            var aux = ArrayList<Movimento>()
+
+            for(mov in movimentos) {
+                if(mov.idItem == idItem) {
+                    aux.add(mov)
+                }
+            }
+
+            return aux
+
+        }
+
 
         fun desconectBaseDados() {
             getDataBase().removeEventListener(eventConsultaProduto)
             getDataBase().removeEventListener(eventConsultaFornecedor)
+            getDataBase().removeEventListener(eventMovimento)
         }
     }
 }

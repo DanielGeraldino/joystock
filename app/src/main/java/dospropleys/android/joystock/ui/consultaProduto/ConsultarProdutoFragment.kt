@@ -19,8 +19,15 @@ class ConsultarProdutoFragment : Fragment() {
         fun newInstance() = ConsultarProdutoFragment()
     }
     private val banco = DataBase
-    private lateinit var listaProduto: ArrayList<Produto>
+    private var listaProduto = ArrayList<Produto>()
     private lateinit var adapter: ProdutosAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        listaProduto = banco.getProdutos()
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +36,7 @@ class ConsultarProdutoFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.consultar_produto_fragment, container, false)
 
-        listaProduto = banco.getProdutos()
+
         adapter = ProdutosAdapter(root.context, listaProduto)
 
         root.listagemConsultaItem.adapter = adapter
@@ -53,11 +60,6 @@ class ConsultarProdutoFragment : Fragment() {
         atualizarLista()
 
         return root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        atualizarLista()
     }
 
     fun atualizarLista() {

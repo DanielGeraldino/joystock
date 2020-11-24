@@ -1,24 +1,41 @@
 package dospropleys.android.joystock.ui.Movimento.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import dospropleys.android.joystock.Adapter.MovimentoAdapter
+import dospropleys.android.joystock.FirebaseHelper.DataBase
+import dospropleys.android.joystock.Model.Movimento
 import dospropleys.android.joystock.R
+import kotlinx.android.synthetic.main.fragment_movimento.view.*
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class PlaceholderFragment : Fragment() {
 
-    private lateinit var teste: String
+    private var entradas = ArrayList<Movimento>()
+    private var saidas = ArrayList<Movimento>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var idItem = activity?.intent?.getStringExtra("id_produto")
+
+        DataBase.getMovimento(idItem).forEach {
+            if(it.tipoMovimento == "Saida") {
+                Log.e("mov saida", it.idItem)
+                saidas.add(it)
+            } else if(it.tipoMovimento == "Entrada") {
+                Log.e("mov entrada", entradas.size.toString())
+                entradas.add(it)
+            }
+        }
+
     }
 
     override fun onCreateView(
@@ -27,13 +44,27 @@ class PlaceholderFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_movimento, container, false)
 
-        teste = if(arguments?.getInt(ARG_SECTION_NUMBER) == 1) {
-            "pagina 1"
+        if(arguments?.getInt(ARG_SECTION_NUMBER) == 1) {
+            root.recyclerMovimento.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(root.context)
+                adapter = MovimentoAdapter(entradas, root.context)
+            }
         } else {
-            "pagina 2"
+            root.recyclerMovimento.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(root.context)
+                adapter = MovimentoAdapter(saidas, root.context)
+            }
         }
 
         return root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        saidas.clear()
+        entradas.clear()
     }
 
     companion object {

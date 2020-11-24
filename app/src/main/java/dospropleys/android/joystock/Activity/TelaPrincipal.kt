@@ -82,6 +82,7 @@ class TelaPrincipal : AppCompatActivity() {
         super.onStart()
         DataBase.consultaProdutos()
         DataBase.consultarFornecedores()
+        DataBase.eventoMovimento()
     }
 
     override fun onDestroy() {
